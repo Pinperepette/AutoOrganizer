@@ -15,16 +15,26 @@ class MyHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         for filename in os.listdir(folder_to_track):
-            src = os.path.join(folder_to_track, filename)
-            file_type = mimetypes.guess_type(filename)[0]
-            if file_type:
-                file_type = file_type.split('/')[0]
-            else:
-                file_type = 'Other'
-            if file_type in self.special_extensions or filename.split('.')[-1].lower() in self.special_extensions:
-                if filename.lower().endswith('.txt'):
+            src = folder_to_track + '/' + filename
+            file_type, extension = mimetypes.guess_type(filename)
+            tipo = mimetypes.guess_type(filename)
+            file_type = file_type.split('/')[0] if file_type else 'Other'
+            extension = extension.split('.')[-1].lower() if extension else 'Other'
+            if tipo[0] != None:
+                local_var = str(tipo[0])
+                new_destination = folder_destination + '/' + local_var + '/'+ filename
+                if (
+                    os.path.exists(str(folder_destination + '/' + local_var))
+                    != True
+                ):
+                    os.makedirs(folder_destination + '/' + local_var + '/')
+                os.rename(src, new_destination)
+            elif file_type in self.special_extensions or extension in self.special_extensions:
+                if extension == 'txt':
                     file_type = 'text'
                     subfolder = 'txt'
+                else:
+                    subfolder = extension
                 new_destination = os.path.join(folder_destination, file_type, subfolder)
                 os.makedirs(new_destination, exist_ok=True)
                 new_file_path = os.path.join(new_destination, filename)
@@ -85,3 +95,4 @@ if __name__ == "__main__":
     special_extensions_file = 'special_extensions.txt'
     app = OrganizerApp(folder_to_track, folder_destination, special_extensions_file)
     app.run()
+
