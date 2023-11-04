@@ -34,7 +34,7 @@ AutoOrganizer is a Python application that automatically organizes your download
 3. **Run the application:**
 
    ```bash
-   python main.py
+   nohup python main.py &
    ```
 
 ## Usage
