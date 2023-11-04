@@ -58,6 +58,20 @@ AutoOrganizer is a Python application that automatically organizes your download
 - **Destination Folder**: The folder where organized files will be moved. Default is a folder named "organized_files" within the user's home directory.
 - **Special Extensions File**: The file where you can specify the file extensions to be organized. Each extension should be on a separate line in lowercase.
 
+## macOS Notification Center Issue
+
+If you encounter the following error in macOS Notification Center:
+
+```plaintext
+RuntimeError: Failed to setup the notification center. This issue occurs when the "Info.plist" file cannot be found or is missing "CFBundleIdentifier".
+```
+
+run:
+
+```bash
+   /usr/libexec/PlistBuddy -c 'Add :CFBundleIdentifier string "rumps"' $VIRTUAL_ENV/bin/Info.plist
+   ```
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
