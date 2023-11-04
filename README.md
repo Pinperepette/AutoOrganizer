@@ -2,6 +2,9 @@
 
 AutoOrganizer is a Python application that automatically organizes your downloaded files into folders based on file extensions. Simply specify the file extensions you want to organize, and AutoOrganizer will move the files to the appropriate folders within your designated destination folder.
 
+**Destination Folder:** By default, AutoOrganizer organizes the files into a folder named "organized_files" within your home directory. You can customize the destination folder according to your preferences.
+
+
 <p align="center">
   <img src="image.png" alt="Descrizione dell'immagine">
 </p>
