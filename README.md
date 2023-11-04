@@ -45,6 +45,9 @@ AutoOrganizer is a Python application that automatically organizes your download
    nohup python main.py &
    ```
 
+   ![GIF](video.gif)
+
+
 ## Usage
 
 1. Launch the application by running `main.py`.
