@@ -42,7 +42,8 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Organizer")
-        self.geometry("700x180") 
+        self.geometry("700x220")
+        self.grid_columnconfigure(1, weight=1)
         self.configure(bg="#f2f2f2")
         self.iconbitmap('layers.ico')
 
@@ -54,25 +55,19 @@ class App(tk.Tk):
         self.track_label = ttk.Label(self, text="Cartella da monitorare:")
         self.track_label.grid(row=0, column=0, pady=10, padx=10, sticky="w")
         self.track_entry = ttk.Entry(self)
-        self.track_entry.grid(row=0, column=1, pady=10, sticky="ew")
+        self.track_entry.grid(row=0, column=1, columnspan=3, pady=10, sticky="ew")
         self.track_button = ttk.Button(self, text="Sfoglia", command=self.browse_track_folder)
-        self.track_button.grid(row=0, column=2, pady=10, padx=10, sticky="w")
+        self.track_button.grid(row=0, column=4, pady=10, padx=10, sticky="e")
 
         self.dest_label = ttk.Label(self, text="Cartella organizzata:")
         self.dest_label.grid(row=1, column=0, pady=10, padx=10, sticky="w")
         self.dest_entry = ttk.Entry(self)
-        self.dest_entry.grid(row=1, column=1, pady=10, sticky="ew")
+        self.dest_entry.grid(row=1, column=1, columnspan=3, pady=10, sticky="ew")
         self.dest_button = ttk.Button(self, text="Sfoglia", command=self.browse_destination_folder)
-        self.dest_button.grid(row=1, column=2, pady=10, padx=10, sticky="w")
-
-        self.empty_label = ttk.Label(self, text="")
-        self.empty_label.grid(row=0, column=3, rowspan=2, padx=10, sticky="ew")
+        self.dest_button.grid(row=1, column=4, pady=10, padx=10, sticky="e")
 
         self.start_button = ttk.Button(self, text="Avvia", command=self.start_organizer)
-        self.start_button.grid(row=0, column=4, rowspan=2, pady=20, padx=10, sticky="e")
-
-        self.info_label = tk.Label(self, text="Premi 'Avvia' per iniziare l'organizzazione dei file.", font=('Helvetica', 10))
-        self.info_label.grid(row=2, column=0, columnspan=5, pady=10, padx=10, sticky="w")
+        self.start_button.grid(row=2, column=4, pady=20, padx=10, sticky="se")
 
     def browse_track_folder(self):
         self.folder_to_track = filedialog.askdirectory()
@@ -103,5 +98,3 @@ class App(tk.Tk):
 if __name__ == "__main__":
     app = App()
     app.mainloop()
-
-
