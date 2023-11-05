@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import tkinter as tk
 from tkinter import filedialog
@@ -6,6 +7,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import mimetypes
 from tkinter import ttk
+import datetime
 
 class MyHandler(FileSystemEventHandler):
     def __init__(self, folder_to_track, folder_destination, special_extensions):
@@ -30,12 +32,20 @@ class MyHandler(FileSystemEventHandler):
 
                 new_destination = os.path.join(self.folder_destination, file_type, subfolder)
                 os.makedirs(new_destination, exist_ok=True)
+
                 new_file_path = os.path.join(new_destination, filename)
+                base, extension = os.path.splitext(new_file_path)
+                timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                new_file_path = f"{base}_{timestamp}{extension}"
                 os.rename(src, new_file_path)
             else:
                 new_destination = os.path.join(self.folder_destination, 'Other')
                 os.makedirs(new_destination, exist_ok=True)
+
                 new_file_path = os.path.join(new_destination, filename)
+                base, extension = os.path.splitext(new_file_path)
+                timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+                new_file_path = f"{base}_{timestamp}{extension}"
                 os.rename(src, new_file_path)
 
 class App(tk.Tk):
