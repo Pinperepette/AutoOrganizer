@@ -82,7 +82,8 @@ run:
 1. Open Command Prompt or PowerShell in the application directory.
 2. Run `python run_windows.py` to start the application.
 
-Note: Make sure you have Python installed on your Windows system before running the command.
+Note: Make sure you have Python installed on your Windows system before running the command or run gui.exe
+
 
 
 ## License
