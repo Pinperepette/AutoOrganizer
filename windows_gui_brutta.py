@@ -42,8 +42,9 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Organizer")
-        self.geometry("700x200") 
+        self.geometry("700x180") 
         self.configure(bg="#f2f2f2")
+        self.iconbitmap('layers.ico')
 
         style = ttk.Style()
         style.configure("TButton", padding=10, width=20, background="#4CAF50", foreground="white")
@@ -73,9 +74,6 @@ class App(tk.Tk):
         self.info_label = tk.Label(self, text="Premi 'Avvia' per iniziare l'organizzazione dei file.", font=('Helvetica', 10))
         self.info_label.grid(row=2, column=0, columnspan=5, pady=10, padx=10, sticky="w")
 
-
-
-
     def browse_track_folder(self):
         self.folder_to_track = filedialog.askdirectory()
         self.track_entry.delete(0, tk.END)
@@ -83,8 +81,8 @@ class App(tk.Tk):
 
     def browse_destination_folder(self):
         self.folder_destination = filedialog.askdirectory()
-        self.destination_entry.delete(0, tk.END)
-        self.destination_entry.insert(0, self.folder_destination)
+        self.dest_entry.delete(0, tk.END)
+        self.dest_entry.insert(0, self.folder_destination)
 
     def start_organizer(self):
         if os.path.isdir(self.folder_to_track) and os.path.isdir(self.folder_destination):
